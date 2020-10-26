@@ -1,9 +1,15 @@
  .background{
     background-repeat:no-repeat;
     background-size: cover;
-    display:flex;
+    background-image: url('images/simple_but_beautiful_by_xflutt_de4lmm9.png');
+    background-color: red;
+    height: 800px;
+    width: 100%;
 }
+.container{
+    display:flex;
 
+}
 #start-button {
     font-size: 30px;
     background-color: rgb(37, 12, 59);
