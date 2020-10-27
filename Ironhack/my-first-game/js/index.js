@@ -1,22 +1,27 @@
 let currentGame;
-let currentPlayer;
+//let currentPlayer;
 let obstacles = [];
 let isOver = false;
 let obstacle;
 
-let myCanvas = document.getElementById('canvas');
-let ctx = myCanvas.getContext('2d');
 
-document.getElementById('start-button').onclick = () => {
+
+
+document.getElementById('start-button').addEventListener("click", () => {
+    console.log("dog");
     startGame();
-}
+}) ;
+    
+    
 
 function startGame() {
-  //  currentGame = new Game();
-    player = new Cat();
-    obstacle = new Obstacle(1000, 700, 50,50);
-    refreshObj(obstacle);
-    refresh(player);
+    currentGame = new Game();
+    let player = new Cat(currentGame);
+    currentGame.player = player;
+    refreshObj();
+    //console.log("cat");
+    //currentGame.score();
+    updateCanvas();
    // currentGame.player = currentGame;
     //currentGame.player = drawImage();
     //obstacles.push(new Obstacle(700, 700, 50, 50));
@@ -26,14 +31,66 @@ function startGame() {
 }  
     //updateCanvas();
 
-function refreshObj(obstacle)
+function refreshObj()
     {   
         setInterval(function()
         { 
-            refreshObstacle(obstacle); 
-        }, 5000);
-    };
-    
+            let randmX = Math.floor(Math.random()*900)
+            let randmY = Math.floor(Math.random()*700)
+            let randomH = Math.floor(Math.random()*60) + 30
+            let randomY = Math.floor(Math.random()*60) + 30
+            //obstacle.moveLeft(); 
+        obstacles.push(new Obstacle(randmX, randmY, randomH, randomY, currentGame))
+        console.log(obstacles);
+        }, 2000);
+ 
+}
+
+function updateCanvas() {
+    currentGame.ctx.clearRect(0, 0, 900, 900);
+    //ctx.clearRect(20, 20, 100, 50); #image top left width height
+    currentGame.player.draw();
+    obstacles.forEach(obstacle => {
+        currentGame.colision(obstacle);
+        obstacle.drawObstacle();
+    });
+    requestAnimationFrame(updateCanvas);
+
+
+} 
+
+
+    document.addEventListener('keydown', e => {
+    //let previousX = player.getPositionX();
+    //let previousY = player.getPositionY();
+    switch(e.keyCode) {
+        case 38:
+            if(currentGame.player.y - 25 > 0) {
+                currentGame.player.moveUp();
+                console.log("jhg");
+            }   
+        break;
+        case 40:
+            if(currentGame.player.y - 25 < 700) {
+                currentGame.player.moveDown();
+            }       
+        break;
+        case 37: 
+        if (currentGame.player.x -25 > 0) {
+            currentGame.player.moveLeft();
+        }
+        break;
+        case 39:
+            if(currentGame.player.x - 25 < 800) {
+                currentGame.player.moveRight();
+            }               
+        break;
+    }   
+   // player.updateCanvas(previousX, previousY);
+});
+
+console.log(startGame);
+console.log(updateCanvas);
     //refreshObstacle(obstacle);
     //refresh(obstacle)
 //requestAnimationFrame(refreshAll);

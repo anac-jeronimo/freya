@@ -1,9 +1,10 @@
  class Obstacle {
-    constructor(x, y, width, height) {
+    constructor(x, y, width, height, game) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.game = game;
     }
     getPositionX(){
         return this.x;
@@ -12,30 +13,51 @@
         return this.y;
     }
     drawObstacle() {
-        ctx.fillStyle = 'red';
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        this.game.ctx.fillStyle = 'red';
+        this.game.ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 
 
-    updateCanvas(x,y) {
-        ctx.clearRect(x, y, 50, 50);
+   /* updateCanvas(x,y) {
+        this.game.ctx.clearRect(x, y, 50, 50);
         //ctx.clearRect(20, 20, 100, 50); #image top left width height
-        this.drawObstacle();
-    }
+        this.game.drawObstacle();
+    } */
 
     moveLeft() {
-        let previousX = this.getPositionX();
-        let previousY = this.getPositionY();
-        this.x -= 25;
-        this.updateCanvas(previousX,previousY);
+        if (this.x -25 > 0) {
+            this.x -= 25;
+        }
+        //let previousX = this.getPositionX();
+        //let previousY = this.getPositionY();
+        
+        //this.updateCanvas(previousX,previousY);
     }
-} 
 
-function refreshObstacle(obstacle) {
-    console.log('objecto');
-    if (obstacle.getPositionX() -25 > 0) 
-    {
-        obstacle.moveLeft();
+   /* refreshObstacle() {
         console.log('objecto');
-    } 
+        
+            obstacle.moveLeft();
+            console.log('objecto');
+        } 
+} */
+    //crashWith(obstacle) {
+       // return !(this.bottom() < obstacle.top() ||
+       // this.top() > obstacle.bottom() || 
+       // this.right() < obstacle.left() || 
+       // this.left() > obstacle.right())
+   // }
+//} 
+
+
 }
+
+
+
+
+
+
+
+
+      
+ 
