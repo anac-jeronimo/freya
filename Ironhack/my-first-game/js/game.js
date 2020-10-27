@@ -1,6 +1,6 @@
 class Game {
     constructor() {
-        this.car = {},
+        this.player = {},
         this.obstacles = [];
         this.score = 0;
     }

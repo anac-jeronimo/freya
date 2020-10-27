@@ -1,5 +1,4 @@
-let myCanvas = document.getElementById('canvas');
-let ctx = myCanvas.getContext('2d');
+
 class Cat {
     constructor() {
         this.x = 100;
@@ -10,7 +9,7 @@ class Cat {
             this.image = image;
             this.draw();
         });
-        image.src = 'images/freya.jpg'; 
+        //image.src = 'images/freya.jpg'; 
     }
     getPositionX(){
         return this.x;
@@ -19,7 +18,7 @@ class Cat {
         return this.y;
     }
     moveUp() {
-        this.y -= 25;
+        this.y -= 25;    
     }
     moveDown() {
         this.y += 25;
@@ -39,31 +38,40 @@ class Cat {
         console.log(this.y);
         //ctx.clearRect(20, 20, 100, 50); #image top left width height
         this.draw();
-    }
+    } 
 
 }
-function refresh(player){
+
+function refresh(player) {
     document.addEventListener('keydown', e => {
         let previousX = player.getPositionX();
         let previousY = player.getPositionY();
         switch(e.keyCode) {
             case 38:
-                player.moveUp();
+                if(player.getPositionY() - 25 > 0) {
+                    player.moveUp();
+                }   
             break;
             case 40:
-                player.moveDown();
+                if(player.getPositionY() - 25 < 700) {
+                    player.moveDown();
+                }       
             break;
-            case 37:
+            case 37: 
+            if (player.getPositionX() -25 > 0) {
                 player.moveLeft();
+            }
             break;
             case 39:
-                player.moveRight();
+                if(player.getPositionX() - 25 < 1420) {
+                    player.moveRight();
+                }               
             break;
         }   
         player.updateCanvas(previousX, previousY);
     });
 }
 
-let player = new Cat();
-refresh(player);
+//let player = new Cat();
+
 
