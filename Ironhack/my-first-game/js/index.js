@@ -3,7 +3,7 @@ let currentGame;
 let obstacles = [];
 let isOver = false;
 let obstacle;
-
+  
 
 
 
@@ -36,7 +36,8 @@ function refreshObj()
         setInterval(function()
         { 
             let randmX = Math.floor(Math.random()*900)
-            let randmY = Math.floor(Math.random()*700)
+            let randmY = 0;
+            //......let randmY = Math.floor(Math.random()*700)
             let randomH = Math.floor(Math.random()*60) + 30
             let randomY = Math.floor(Math.random()*60) + 30
             //obstacle.moveLeft(); 
@@ -46,6 +47,48 @@ function refreshObj()
  
 }
 
+//...................quero pôr os objectos a sair do canvas, tenho de 
+//criar outra function? e meter frames?frequency?
+/*
+let obstaclesFrequency = 0;
+function obstFrequency() {
+    this.ctx.clearRect(0, 0, 900, 700);
+    currentGame.player. ?????
+    obstaclesFrequency++;
+
+    if(obstaclesFrequency % 100 === 1) {
+        let randmX = Math.floor(Math.random()*900)
+            let randmY = 0;
+            //......let randmY = Math.floor(Math.random()*700)
+            let randomH = Math.floor(Math.random()*60) + 30
+            let randomY = Math.floor(Math.random()*60) + 30
+            //obstacle.moveLeft(); 
+        obstacles.push(new Obstacle(randmX, randmY, randomH, randomY, currentGame))
+        console.log(obstacles);
+    }
+    for(let i = 0; i<currentGame.obstacles.length; i++) {
+        currentGame.obstacles[i].y += 1;
+        currentGame.obstacles[i].drawObstacle();
+
+        if (detectCollision(currentGame.obstacles[i])) {
+            alert('Meooooowwwwww!')
+            obstaclesFrequency = 0;
+            currentGame.score = 0;
+            document.getElementById('score').innerHTML = 0;
+            currentGame.obstacles = [];
+        }
+    } 
+    if (currentGame.obstacles.length > 0 && currentGame.obstacles[i].y >= 700) {
+        currentGame.obstacles.splice(i, 1);
+        currentGame.score++;
+        document.getElementById('score').innerHTML = currentGame.score;
+    }
+}
+
+*/
+
+//::::::::::::::::::::::::::::::::::::
+
 function updateCanvas() {
     currentGame.ctx.clearRect(0, 0, 900, 900);
     //ctx.clearRect(20, 20, 100, 50); #image top left width height
@@ -53,6 +96,7 @@ function updateCanvas() {
     obstacles.forEach(obstacle => {
         currentGame.colision(obstacle);
         obstacle.drawObstacle();
+        
     });
     requestAnimationFrame(updateCanvas);
 
@@ -67,7 +111,7 @@ function updateCanvas() {
         case 38:
             if(currentGame.player.y - 25 > 0) {
                 currentGame.player.moveUp();
-                console.log("jhg");
+                //console.log("jhg");
             }   
         break;
         case 40:

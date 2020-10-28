@@ -15,14 +15,17 @@
     drawObstacle() {
         this.game.ctx.fillStyle = 'red';
         this.game.ctx.fillRect(this.x, this.y, this.width, this.height);
+        
     }
-
-
-   /* updateCanvas(x,y) {
-        this.game.ctx.clearRect(x, y, 50, 50);
+}
+    /*removeObstacle() {
+        this.ctx.clearRect(this.x, this.y, this.width, this.height);
         //ctx.clearRect(20, 20, 100, 50); #image top left width height
-        this.game.drawObstacle();
-    } */
+        
+    } 
+}
+
+   
 
     moveLeft() {
         if (this.x -25 > 0) {
@@ -32,9 +35,9 @@
         //let previousY = this.getPositionY();
         
         //this.updateCanvas(previousX,previousY);
-    }
+    
 
-   /* refreshObstacle() {
+    refreshObstacle() {
         console.log('objecto');
         
             obstacle.moveLeft();
@@ -50,7 +53,7 @@
 //} 
 
 
-}
+
 
 
 
@@ -60,4 +63,3 @@
 
 
       
- 
